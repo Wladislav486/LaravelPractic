@@ -18,9 +18,10 @@ php artisan make:model Post -m
 - post_tag по конвенции
 php artisan make:migration create_post_tag_table
 3 Добавляем создание необходимых полей в миграции
-
-
-
+4 Создание св-в ссылок на связные сущности для моделей
+5 Заполнение поля slug(транслитирация+уникальное)
+- Транслетирация - helper laravel Str::slug
+- уникальное - пакет laravel sluggable
 
 Дополнительно
 1 Расширение для работы с деревьями разделов
