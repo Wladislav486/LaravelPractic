@@ -1,6 +1,9 @@
 http://laravel.blog
 
-
+Установить почту локально для проекта
+git config user.email vladgorbunov486@gmail.com
+просмотреть
+git config user.email
 
 
 
