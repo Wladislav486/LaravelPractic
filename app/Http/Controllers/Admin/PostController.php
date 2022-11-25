@@ -4,15 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Category;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreCategory;
 use App\Post;
 use App\Tag;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class PostController extends Controller
@@ -45,9 +42,21 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|integer',
+            'thumbnail' => 'nullable|image'
         ]);
-        dd($request->all());
+
+        $data = $request->all();
+        $data['thumbnail'] = Post::uploadImage($request);
+
+        $post = Post::create($data);
+        /**
+         * создание привязки поста к тегу
+         */
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.index')->with('success', 'Статья добавлена');
     }
@@ -60,8 +69,10 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        $post = [];
-        return view('admin.posts.edit', compact('post'));
+        $post = Post::find($id);
+        $categories = Category::pluck('title', 'id')->all();
+        $tags = Tag::pluck('title', 'id')->all();
+        return view('admin.posts.edit', compact('categories', 'tags', 'post'));
     }
 
     /**
@@ -74,9 +85,22 @@ class PostController extends Controller
     {
 
         $request->validate([
-            'title' => 'required'
+            'title' => 'required',
+            'description' => 'required',
+            'content' => 'required',
+            'category_id' => 'required|integer',
+            'thumbnail' => 'nullable|image'
         ]);
 
+
+        $post = Post::find($id);
+        $data = $request->all();
+        $data['thumbnail'] = Post::uploadImage($request, $post->thumbnail);
+        $post->update($data);
+        /**
+         * пересоздание привязки поста к тегу
+         */
+        $post->tags()->sync($request->tags);
 
         return redirect()->route('posts.index')->with('success', 'Изменения сохранены');
     }
@@ -88,9 +112,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-//        $category = Category::find($id);
-//        $category->delete();
-
-        return redirect()->route('categories.index')->with('success', 'Пост удалён');
+        $post = Post::find($id);
+        $post->tags()->sync([]);
+        Storage::delete($post->thumbnail);
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Пост удалён');
     }
 }

@@ -5,7 +5,11 @@ git config user.email vladgorbunov486@gmail.com
 просмотреть
 git config user.email
 
+Сбросить кеш конфигурация
+php artisan config:clear
 
+Сбросить кеш
+php artisan cache:clear
 
 
 
