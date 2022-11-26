@@ -14,3 +14,7 @@ npm-debug.log
 yarn-error.log
 package-lock.json
 /public/uploads
+/public/ckfinder
+/public/assets/admin/ckfinder/
+/public/assets/admin/ckeditor5/
+
