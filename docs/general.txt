@@ -11,6 +11,7 @@ php artisan config:clear
 Сбросить кеш
 php artisan cache:clear
 
+1 set NODE_OPTIONS=--openssl-legacy-provider в терминале виндовс, при возникновении ошибки
 
 
 
