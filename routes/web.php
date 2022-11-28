@@ -12,10 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+/**
+ * Публичеая часть
+ */
+Route::get('/', 'PostController@index')->name('home');
+Route::get('/article', 'PostController@show')->name('posts.single');
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+
+
 
 /**
  * административная часть
@@ -27,21 +31,24 @@ Route::group(['prefix' => "admin", 'namespace' => 'Admin', 'middleware' => 'admi
    Route::resource('/posts', 'PostController');
 });
 
+
+
+
+/**
+ * авторизация
+ * регистрация
+ * выход из аккаунта
+ */
 Route::group(['middleware' => 'guest'], function (){
-    /**
-     * авторизация
-     * регистрация
-     * выход из аккаунта
-     */
     Route::get('/register', 'UserController@create')->name('register.create');
     Route::post('/register', 'UserController@store')->name('register.store');
 
     Route::get('/login', 'UserController@loginForm')->name('login.create');
     Route::post('/login', 'UserController@login')->name('login');
 });
-
-
 Route::get('/logout', 'UserController@logout')->name('logout')->middleware('auth');
+
+
 
 
 

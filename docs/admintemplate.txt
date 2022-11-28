@@ -9,9 +9,6 @@ resources/assets/admin
 с помощью внесения логики в испольняемый файл laravel mix - webpack.mix.js
 4 вынос хедера и футера в отдельные представления
 
-Доп
-1 set NODE_OPTIONS=--openssl-legacy-provider в терминале виндовс, при возникновении ошибки
-
 
 
 
