@@ -68,4 +68,10 @@ class Post extends Model
             ->format('d F, Y');
     }
 
+
+    public function scopeLike($query, $s)
+    {
+        return $query->where('title', 'LIKE', "%{$s}%");
+    }
+
 }

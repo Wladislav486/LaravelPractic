@@ -52,8 +52,10 @@
                         <small><i class="fa fa-eye"></i> {{ $post->views }}</small>
                     </div><!-- end meta -->
                 </div><!-- end blog-box -->
+
+                <hr class="invis">
+
             @endforeach
-            <hr class="invis">
 
         </div>
     </div>
