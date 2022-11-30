@@ -14,6 +14,10 @@ php artisan cache:clear
 1 set NODE_OPTIONS=--openssl-legacy-provider в терминале виндовс, при возникновении ошибки
 
 
+ссылки
+https://adminlte.io/docs/3.0/
+https://laravel.su/docs/7.x/installation
+
 
 
 
