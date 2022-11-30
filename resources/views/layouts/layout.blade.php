@@ -3,7 +3,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Markedia - Marketing Blog Template</title>
+<title>@yield('title')</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -29,7 +29,7 @@
                 <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand" href="marketing-index.html"><img src="/assets/front/images/version/market-logo.png" alt=""></a>
+                <a class="navbar-brand" href="{{ route('home') }}"><img src="/assets/front/images/version/market-logo.png" alt=""></a>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
