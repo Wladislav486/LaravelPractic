@@ -14,10 +14,10 @@
 <link rel="stylesheet" href="{{ asset('assets/front/css/front.css') }}">
 
 
-{{--<!--[if lt IE 9]>--}}
-{{--<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>--}}
-{{--<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>--}}
-{{--<![endif]-->--}}
+{{--<!--[if lt IE 9]>
+<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->--}}
 
 </head>
 <body>
@@ -52,23 +52,22 @@
         </div><!-- end container-fluid -->
     </header><!-- end market-header -->
 
-    @yield('header')
+    @yield('page-title')
 
-    <section class="section lb @if(!Request::is('/')) m3rem @endif">
+    <section class="section lb">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-
-
-                @yield('content')
-
-
-
-                </div><!-- end col -->
 
                 <div class="col-lg-4 col-md-12 col-sm-12 col-xs-12">
                     @include('layouts.sidebar')
                 </div><!-- end col -->
+
+                <div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
+
+                    @yield('content')
+
+                </div><!-- end col -->
+
             </div><!-- end row -->
         </div><!-- end container -->
     </section>
