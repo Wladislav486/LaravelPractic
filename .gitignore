@@ -17,4 +17,5 @@ package-lock.json
 /public/ckfinder
 /public/assets/admin/ckfinder/
 /public/assets/admin/ckeditor5/
+/.docker/db
 
