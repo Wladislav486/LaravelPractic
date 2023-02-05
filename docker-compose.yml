@@ -8,9 +8,6 @@ services:
       context: ./
       dockerfile: ./.docker/app/Dockerfile
     image: blog_test
-    command: >
-      sh -c "composer install &&
-      php artisan migrate"
     container_name: blog-app
     restart: unless-stopped
     working_dir: /var/www/
