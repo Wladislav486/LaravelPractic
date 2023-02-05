@@ -30,11 +30,17 @@ class AppServiceProvider extends ServiceProvider
         if (Cache::has('cats')){
             $cats = Cache::get('cats');
         }else{
-            $cats = Category::withCount('posts')
-                ->orderBy('posts_count', 'desc')
-                ->get();
-            Cache::put('cats', $cats, 30);
+            try{
+                $cats = Category::withCount('posts')
+                    ->orderBy('posts_count', 'desc')
+                    ->get();
+                Cache::put('cats', $cats, 30);
+            }catch (\Exception $ex){
+                return;
+            }
+
         }
+
 
         view()->composer('layouts.sidebar', function ($view)  use ($cats){
             $view->with('popular_posts', Post::orderBy('views', 'desc')
